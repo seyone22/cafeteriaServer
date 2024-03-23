@@ -150,3 +150,4 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'automation@survey.etsteas.co.uk'
 
 CSRF_TRUSTED_ORIGINS = ['https://survey.etsteas.co.uk', 'http://survey.etsteas.co.uk']
+CSRF_COOKIE_SECURE = False

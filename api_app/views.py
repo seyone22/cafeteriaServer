@@ -9,6 +9,7 @@ from .serializers import ReviewSerializer
 
 
 # Create your views here.
+@method_decorator(csrf_exempt, name='post')
 class ReviewViews(APIView):
     permission_classes = (IsAuthenticated,)
 
