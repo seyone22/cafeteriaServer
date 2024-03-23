@@ -6,3 +6,4 @@ class Review(models.Model):
     date = models.DateTimeField()
     rating_average = models.FloatField()
     rating_count = models.FloatField()
+    site = models.CharField(max_length=32)

@@ -1,0 +1,20 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block extrastyle %}{{ block.super }}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+        :root {
+            --primary: #050203 !important;
+            --secondary: #522b39 !important;
+            --link-fg: #f2b91e !important;
+            --link-selected-fg: #71c792 !important;
+            --breadcrumbs-bg: #1f1015 !important;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+{% endblock %}
