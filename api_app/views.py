@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -10,6 +11,7 @@ from .serializers import ReviewSerializer
 class ReviewViews(APIView):
     permission_classes = (IsAuthenticated,)
 
+    @csrf_exempt
     def post(self, request):
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid():
