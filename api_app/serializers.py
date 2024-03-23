@@ -4,8 +4,8 @@ from .models import Review
 
 class ReviewSerializer(serializers.ModelSerializer):
     date = serializers.DateTimeField()
-    rating_average = serializers.FloatField()
-    rating_count = serializers.FloatField()
+    rating = serializers.FloatField()
+    site = serializers.CharField()
 
     class Meta:
         model = Review

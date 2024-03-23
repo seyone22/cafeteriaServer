@@ -7,7 +7,7 @@ from django.contrib.auth.models import User, Group
 
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ['date', 'rating_average', 'rating_count', 'site']
+    list_display = ['date', 'rating', 'site']
     list_filter = ['date', 'site']
 
 
