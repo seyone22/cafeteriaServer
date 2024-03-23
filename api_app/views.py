@@ -8,10 +8,10 @@ from .serializers import ReviewSerializer
 
 
 # Create your views here.
+@csrf_exempt
 class ReviewViews(APIView):
     permission_classes = (IsAuthenticated,)
 
-    @csrf_exempt
     def post(self, request):
         serializer = ReviewSerializer(data=request.data)
         if serializer.is_valid():
