@@ -81,17 +81,17 @@ WSGI_APPLICATION = 'cafeteriaServer.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'sqlite': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    'mysql': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cafeteria',
-        'USER': 'root',
-        'PASSWORD': 'password',
+        'USER': 'django',
+        'PASSWORD': 'thisisnotsecurelol',
         'HOST': 'localhost',
-        'PORT': '<port_num>',
+        'PORT': '3306',
     }
 }
 
@@ -148,3 +148,5 @@ EMAIL_HOST_USER = 'automation'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'automation@survey.etsteas.co.uk'
+
+CSRF_TRUSTED_ORIGINS = ['https://survey.etsteas.co.uk', 'http://survey.etsteas.co.uk']
