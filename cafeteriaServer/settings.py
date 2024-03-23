@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -26,8 +25,7 @@ SECRET_KEY = 'django-insecure-t)#-%u82h&h^w!fgs)2zc)b!(%s&-u&k(vbewp^(1&wf08y&j#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.16', '127.0.0.1', 'localhost', '10.0.2.2']
-
+ALLOWED_HOSTS = ['survey.etsteas.co.uk', '10.0.2.16', '127.0.0.1', 'localhost', '10.0.2.2', '34.121.24.39']
 
 # Application definition
 
@@ -43,7 +41,7 @@ INSTALLED_APPS = [
     # Third-Party Apps
     'rest_framework',
     'rest_framework.authtoken',
-    
+
     # Local Apps (Project Apps)
     'api_app'
 ]
@@ -79,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'cafeteriaServer.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -97,7 +94,6 @@ DATABASES = {
         'PORT': '<port_num>',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -117,7 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -129,7 +124,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -139,7 +133,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
