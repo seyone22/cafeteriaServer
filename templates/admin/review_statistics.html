@@ -1,0 +1,27 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date">
+
+                <label for="start_date">Select Start Date:</label>
+                <input type="date" id="start_date" name="start_date">
+
+                <label for="end_date">Select End Date:</label>
+                <input type="date" id="end_date" name="end_date">
+
+
+                <p>Average rating today: {{ avg_rating_today }}</p>
+                <p>Average rating yesterday: {{ avg_rating_yesterday }}</p>
+                <p>Average rating this week: {{ avg_rating_this_week }}</p>
+
+                <p>{{ log_value }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
