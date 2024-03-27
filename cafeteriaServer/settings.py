@@ -155,15 +155,3 @@ DEFAULT_FROM_EMAIL = 'automation@survey.etsteas.co.uk'
 
 CSRF_TRUSTED_ORIGINS = ['https://survey.etsteas.co.uk', 'http://survey.etsteas.co.uk', 'http://localhost:8000',
                         'http://127.0.0.1:8000', 'http://0.0.0.0:8000']
-CSRF_COOKIE_SECURE = False
-
-CORS_ALLOW_CREDENTIALS = True
-
-CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SAMESITE = 'Lax'
-CSRF_COOKIE_HTTPONLY = False
-SESSION_COOKIE_HTTPONLY = True
-
-SESSION_COOKIE_SECURE = False
-
-APPEND_SLASH = False
