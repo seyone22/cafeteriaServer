@@ -13,6 +13,7 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django import forms
 from cafeteriaServer.admin import cafeteriaserver_admin_site
+from .actions import export_reviews_as_csv
 from .models import Review
 
 
@@ -61,8 +62,8 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-
 class ReviewAdmin(admin.ModelAdmin):
+    actions = [export_reviews_as_csv]
     list_display = ['date', 'rating', 'site']
     list_filter = ['date', 'site']
 

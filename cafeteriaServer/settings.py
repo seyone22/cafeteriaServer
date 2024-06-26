@@ -126,9 +126,15 @@ USE_I18N = True
 USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_URL = 'static/'
+
+# Additional locations of static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'cafeteriaServer/static'),
+]
+
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -147,11 +153,19 @@ REST_FRAMEWORK = {
 # Mail settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.survey.etsteas.co.uk'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'automation'
-EMAIL_HOST_PASSWORD = 'password'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'info'
+EMAIL_HOST_PASSWORD = 'gkK,Vi!7s1I0'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'automation@survey.etsteas.co.uk'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 CSRF_TRUSTED_ORIGINS = ['https://survey.etsteas.co.uk', 'http://survey.etsteas.co.uk', 'http://localhost:8000',
                         'http://127.0.0.1:8000', 'http://0.0.0.0:8000']
+
+# Celery settings
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'GMT+530'
