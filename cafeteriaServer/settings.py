@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-t)#-%u82h&h^w!fgs)2zc)b!(%s&-u&k(vbewp^(1&wf08y&j#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['survey.etsteas.co.uk', '10.0.2.16', '127.0.0.1', 'localhost', '10.0.2.2', '34.121.24.39']
+ALLOWED_HOSTS = ['survey.etsteas.co.uk', '10.0.2.16', '127.0.0.1', 'localhost', '10.0.2.2', '34.121.24.39', '35.209.137.66']
 
 # Application definition
 
