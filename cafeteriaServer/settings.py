@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t)#-%u82h&h^w!fgs)2zc)b!(%s&-u&k(vbewp^(1&wf08y&j#'
+SECRET_KEY = '-sz$p+z82(jozzvzp23jo&=2i7*c+up6ttkep07jj+g3v$er2*'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['survey.etsteas.co.uk', '10.0.2.16', '127.0.0.1', 'localhost', '10.0.2.2', '34.121.24.39', '35.209.137.66']
+ALLOWED_HOSTS = ['survey.etsteas.co.uk', '10.0.2.16', '127.0.0.1', 'localhost', '10.0.2.2', '34.121.24.39', '35.209.137.66', ".awsapprunner.com"]
 
 # Application definition
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -133,6 +135,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'cafeteriaServer/static'),
 ]
 
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -152,11 +163,11 @@ REST_FRAMEWORK = {
 
 # Mail settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.survey.etsteas.co.uk'
-EMAIL_PORT = 465
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 26
 EMAIL_HOST_USER = 'info'
 EMAIL_HOST_PASSWORD = 'gkK,Vi!7s1I0'
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 CSRF_TRUSTED_ORIGINS = ['https://survey.etsteas.co.uk', 'http://survey.etsteas.co.uk', 'http://localhost:8000',

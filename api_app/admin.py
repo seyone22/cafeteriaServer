@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from django.contrib import admin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import User, Group
+from django.core.mail import send_mail
 from django.db.models import Avg
 from django.http import HttpResponse
 from django.template.response import TemplateResponse
@@ -13,8 +14,10 @@ from rest_framework.authtoken.models import Token
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django import forms
 from cafeteriaServer.admin import cafeteriaserver_admin_site
-from .actions import export_reviews_as_csv
-from .models import Review
+from .actions import export_reviews_as_csv, send_email_to_recipients
+from .forms import EmailConfigForm
+from .models import Review, EmailConfig, Recipient
+from django.utils.translation import gettext_lazy as _
 
 
 class UserCreationForm(forms.ModelForm):
@@ -119,6 +122,58 @@ class UserAdmin(BaseUserAdmin):  # Corrected
     generate_tokens.short_description = "Generate Tokens"
 
 
+class EmailConfigAdmin(admin.ModelAdmin):
+    form = EmailConfigForm
+    list_display = ('smtp_server', 'smtp_port', 'sender_email', 'send_time', 'email_subject')
+    fieldsets = (
+        ('Email Configuration', {
+            'fields': ('smtp_server', 'smtp_port', 'sender_email', 'send_time', 'email_subject', 'email_body', 'smtp_username', 'smtp_password'),
+        }),
+    )
+
+    readonly_fields = ('smtp_password',)  # Ensure password is read-only
+
+    def send_test_email(self, request, queryset):
+        if queryset.exists():
+            email_config = queryset.first()
+
+            subject = "Test Email"
+            message = "This is a test email to verify your email configuration."
+            from_email = email_config.sender_email
+            recipient_list = [email_config.sender_email]
+
+            try:
+                send_mail(subject, message, from_email, recipient_list)
+                self.message_user(request, _("Test email sent successfully."))
+            except Exception as e:
+                self.message_user(request, _("Failed to send test email: %s" % str(e)), level=admin.ERROR)
+
+    send_test_email.short_description = "Send Test Email"
+
+    actions = [send_test_email]
+    def has_add_permission(self, request):
+        # Disable the ability to add more instances via the admin interface
+        return EmailConfig.objects.count() == 0
+
+    def has_delete_permission(self, request, obj=None):
+        # Prevent deletion via the admin interface
+        return False
+
+    def get_queryset(self, request):
+        # Limit queryset to only the existing instance
+        qs = super().get_queryset(request)
+        return qs.filter(pk=1)
+
+    def has_change_permission(self, request, obj=None):
+        # Restrict change permission to only allow editing the existing instance
+        return obj is not None
+
+
+class RecipientAdmin(admin.ModelAdmin):
+    list_display = ['email_address']
+    actions = [send_email_to_recipients]  # Add the custom action here
+
+
 # Register the Review model
 cafeteriaserver_admin_site.register(Review, ReviewAdmin)
 
@@ -128,3 +183,9 @@ cafeteriaserver_admin_site.register(Token, TokenAdmin)
 # Register the User and Group models
 cafeteriaserver_admin_site.register(User, UserAdmin)
 cafeteriaserver_admin_site.register(Group)
+
+# Register the EmailConfig model
+cafeteriaserver_admin_site.register(EmailConfig, EmailConfigAdmin)
+
+# Register the recipient model
+cafeteriaserver_admin_site.register(Recipient, RecipientAdmin)
