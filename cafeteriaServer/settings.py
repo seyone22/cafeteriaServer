@@ -85,16 +85,12 @@ WSGI_APPLICATION = 'cafeteriaServer.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'mysql': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'cafeteria',
+        'NAME': 'webapp',
         'USER': 'django',
-        'PASSWORD': 'thisisnotsecurelol',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'PASSWORD': 'AazFBC5F',
+        'HOST': 'cafeteria-server-db.cn48wq068pka.eu-north-1.rds.amazonaws.com',  # e.g., 'your-db-instance.us-east-1.rds.amazonaws.com'
+        'PORT': '3306',  # Default MariaDB port
     }
 }
 
